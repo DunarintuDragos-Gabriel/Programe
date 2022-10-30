@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i;
+    int *numar = (int*) malloc(sizeof(int));
+    scanf("%d", numar);
+    int *a = (int*) calloc(numar, sizeof(int));
+    for(i=0; i<*numar; i++)
+        scanf("%d", (a+i));
+    int *maxim = (int*) malloc(sizeof(int));
+    maxim = a;
+    for(i=1; i<*numar; i++)
+        if(*(a+i) > *maxim) maxim = a+i;
+    printf("numarul maxim din %d, la adresa %p.", *maxim, maxim);
+    return 0;
+}
