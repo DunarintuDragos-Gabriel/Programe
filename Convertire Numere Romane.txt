@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    char roman[40];
+    int numar=0,i,x[40],l;
+    printf("Numarul roman este :");
+    scanf("%s",roman);
+    l=strlen(roman);
+    for(i=0; i<l; i++)
+    {
+        switch(roman[i])
+        {
+        case 'm':
+        case 'M':
+            x[i]=1000;
+            break;
+        case 'd':
+        case 'D':
+            x[i]=500;
+            break;
+        case 'c':
+        case 'C':
+            x[i]=100;
+            break;
+        case 'l':
+        case 'L':
+            x[i]=50;
+            break;
+        case 'x':
+        case 'X':
+            x[i]=10;
+            break;;
+        case 'v':
+        case 'V':
+            x[i]=5;
+            break;
+        case 'i':
+        case 'I':
+            x[i]=1;
+        }
+    }
+    for(i=0; i<l; i++)
+    {
+        if(i==l-1 || x[i]>=x[i+1])
+            numar=numar+x[i];
+        else
+            numar=numar-x[i];
+    }
+    printf("Pentru a converti numere romane  %s este in zecimal %d ", roman, numar);
+    return 0;
+}
