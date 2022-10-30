@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void lungime_sir(int *lungime, char sir[])
+{
+    *lungime = 0;
+    int i=0;
+    while(*(sir+i)!='\0')
+        i++;
+    *lungime = i;
+}
+int comparare_siruri(char sir_1[], char sir_2[])
+{
+    int sirul, sir_t;
+    lungime_sir(&sirul, sir_1);
+    lungime_sir(&sir_t, sir_2);
+    if(sirul<sir_t)
+        return -1;
+    if(sirul>sir_t)
+        return 1;
+    return 0;
+}
+int main()
+{
+    char x[128], y[127];
+    fgets(x, sizeof(x), stdin);
+    fgets(y, sizeof(y), stdin);
+    switch(comparare_siruri(x,y))
+    {
+    case -1:
+        printf("sirul 1 este mai mic decat sirul 2: !\n");
+        if (x<y)
+            //else
+            //(y<x)
+            break;
+
+    case 1:
+        printf("sirul 1 este mai mare decat sirul 2: !\n");
+        if (x>y)
+            //else
+            //(y>x)
+            break;
+
+    case 0:
+        printf("sirurile 1 si 2 sunt egale: \n");
+        if (x==y)
+            break;
+        ;
+    }
+    return 0;
+
+}
