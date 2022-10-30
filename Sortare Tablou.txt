@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void interschimbare(int *x, int *y)
+{
+    int aux = *x;
+    *x = *y;
+    *y = aux;
+}
+
+void sortare(int vector[], int *numar)
+{
+    int i=0, ordonat = 0;
+    while(!ordonat)
+    {
+        ordonat = 1;
+        for(i=0; i<(*numar)-1; i++)
+            if(*(vector+i) > *(vector+i+1))
+            {
+                interschimbare(&(*(vector+i)), &(*(vector+i+1)));
+                ordonat = 0;
+            }
+    }
+}
+
+int main()
+{
+    int a[200], numar, i;
+    scanf("%d", &numar);
+    for(i=0; i<numar; i++)
+        scanf("%d", a+i);
+
+    sortare(a, &numar);
+
+    for(i=0; i<numar; i++)
+        printf("%d ", *(a+i));
+    return 0;
+}
