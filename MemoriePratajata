@@ -1,0 +1,28 @@
+#include <iostream>
+#include <windows.h>
+
+const int maxCount = 1000;
+
+int main() {
+    HANDLE semaphore = CreateSemaphore(NULL, 1, 1, L"SemaphoreName"); // Aici am creat semaforul
+
+    if (semaphore == NULL) {
+        std::cerr << "Eroare la crearea semaforului: " << GetLastError() << std::endl;
+        return 1;
+    }
+
+    HANDLE hProcess = GetCurrentProcess(); // Am obtinut handle-ul procesului curent
+
+    for (int i = 0; i < maxCount; ++i) {
+        WaitForSingleObject(semaphore, INFINITE); // Aici asteptam eliberarea semaforului
+
+        // Aici se afla ecțiunea critică
+        std::cout << "Procesul " << GetCurrentProcessId() << " numără: " << i + 1 << std::endl;
+
+        ReleaseSemaphore(semaphore, 1, NULL); // Se elibereaza semaforul
+    }
+
+    CloseHandle(semaphore); // Am inchis semaforul
+
+    return 0;
+}
